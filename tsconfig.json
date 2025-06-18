@@ -1,14 +1,23 @@
+// tsconfig.json
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es6",
     "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true, // Très utile pour les imports CommonJS/ES Modules
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, // Active tous les checks stricts, incluant noImplicitAny
+    "skipLibCheck": true, // Utile pour ignorer les erreurs de type dans les fichiers de dépendances
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts" // Inclut tous les fichiers .ts dans le dossier src
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
