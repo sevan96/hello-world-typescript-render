@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
@@ -23,10 +24,12 @@
     "typescript": "^5.8.3"
   },
   "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",
-      "outDir": "dist",
-      "sourceMap": true,
-      "types": ["node"]
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": true,
+    "types": [
+      "node"
+    ]
   }
 }
