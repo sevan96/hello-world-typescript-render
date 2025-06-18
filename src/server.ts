@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/health", (req, res) => {
-  res.json({ status: "OK ", uptime: process.uptime() });
+  res.json({ status: "Healthy", uptime: process.uptime() });
 });
 
 app.listen(PORT, () => {
