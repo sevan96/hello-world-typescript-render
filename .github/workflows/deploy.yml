@@ -1,0 +1,45 @@
+name: Deploy to Render
+# Déclenche le workflow sur push vers main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job de test et build
+  test-and-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Récupérer le code source
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Configurer Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    # Installer les dépendances
+    - name: Install dependencies
+      run: npm ci
+    
+    # Construire l'application
+    - name: Build application
+      run: npm run build
+    
+    # Vérifier que le build fonctionne
+    - name: Test build output
+      run: |
+        if [ ! -d "dist" ]; then
+          echo "❌ Build failed: dist directory not found"
+          exit 1
+        fi
+        if [ ! -f "dist/server.js" ]; then
+          echo "❌ Build failed: server.js not found"
+          exit 1
+        fi
+        echo "✅ Build successful"
