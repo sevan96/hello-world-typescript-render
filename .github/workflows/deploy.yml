@@ -44,6 +44,27 @@ jobs:
         fi
         echo "✅ Build successful"
 
+    - name: Test API Connection
+      run: |
+        echo "🔍 Testing Render API connection..."
+        
+        response=$(curl -X GET \
+          "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}" \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+          -w "\n%{http_code}" \
+          -s)
+        
+        http_code=$(echo "$response" | tail -n1)
+        
+        if [ "$http_code" -eq 200 ]; then
+          echo "✅ Connexion API Render réussie!"
+          echo "ℹ️  Service trouvé et accessible"
+        else
+          echo "❌ Problème de connexion API. Code: $http_code"
+          echo "🔧 Vérifiez vos secrets RENDER_API_KEY et RENDER_SERVICE_ID"
+          exit 1
+        fi
+
   # Job de déploiement (seulement si test-and-build réussit)
   deploy:
     needs: test-and-build
