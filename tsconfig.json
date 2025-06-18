@@ -9,9 +9,9 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true, // Active tous les checks stricts, incluant noImplicitAny
     "skipLibCheck": true, // Utile pour ignorer les erreurs de type dans les fichiers de dépendances
-    "types": [
-      "node"
-    ]
+    // "types": [
+    //   "node"
+    // ]
   },
   "include": [
     "src/**/*.ts" // Inclut tous les fichiers .ts dans le dossier src
